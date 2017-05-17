@@ -134,19 +134,7 @@ int main(){
     map<double, List> pots;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
-            if (matrix[i][j] != -1) { //тут должна быть проверка на null
-                List list = List();
-                double temp = matrix[i][j];
-                for (int k = 0 ; k < 3; k++) {
-                    for (int h = 0; h < 3; h++) {
-                        if (matrix[k][h] == temp){
-                            add(&list, k, h);
-                            matrix[k][h] = -1;
-                        }
-                    }
-                }
-                pots[temp]=list;
-                };
+            add(&pots[matrix[i][j]], i, j);
             }
         }
     }
