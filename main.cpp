@@ -57,7 +57,7 @@ void add( List *list, int x, int y )
 }
 
 
-void print( List * list )
+void printList( List * list )
 {
     Node * temp = list->head;  // Временно указываем на адрес первого элемента
     while( temp != nullptr )      // Пока не встретим пустое значение
@@ -149,11 +149,35 @@ void  delete_from_list(List *list, int i)  // 5
 
 
 int main(){
-    Matrix matrix;
-    List list=list();
-    int n=1;
-    int m=1;
-    double temp=getItem(matrix,n,m);
+    //Matrix matrix;
+    double matrix[3][3];
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    int c = 1;
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            if (matrix[i][j] != -1) { //тут должна быть проверка на null
+                List list = List();
+                double temp = matrix[i][j];
+                for (int k = 0 ; k < 3; k++) {
+                    for (int h = 0; h < 3; h++) {
+                        if (matrix[k][h] == temp){
+                            add(&list, k, h);
+                            matrix[k][h] = -1;
+                        }
+                    }
+                }
+                cout << "Potential № " << c << ":" << endl;
+                printList(&list);
+                c++;
+            }
+        }
+    }
+
+    /*double temp=getItem(matrix,n,m);
     for (int i; i <= getNumberofStrings(matrix); i++){
         for (int j; j<= getNumberofColumns(matrix); j++){
             if (getItem(matrix,i,j)==temp){
@@ -162,6 +186,6 @@ int main(){
             }
         }
 
-    }
+    }*/
 }
 
