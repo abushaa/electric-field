@@ -70,32 +70,6 @@ void printList( List * list )
 
 
 
-Node* search_node_end (List *list, int x, int y)  // 3
-{
-    Node *temp = list->tail;
-    while (temp) {
-        if (temp->x == x & temp->y == y) {
-            return temp;
-        }
-        temp = temp->prev;
-    }
-    return temp;
-}
-
-
-
-Node* search_node_beginning (List *list, int x, int y)  // 3
-{
-    Node *temp = list->head;
-    while (temp) {
-        if (temp->x == x & temp->y == y) {
-            return temp;
-        }
-        temp = temp->next;
-    }
-    return temp;
-}
-
 
 
 void insert (List *list, Node *node, int i)  // 4
