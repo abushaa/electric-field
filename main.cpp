@@ -2,6 +2,7 @@
 // Created by Алина Бадамшина on 17.05.17.
 //
 #include <iostream>
+#include <map>
 using namespace std;
 
 struct Node       //Структура являющаяся звеном списка
@@ -70,58 +71,6 @@ void printList( List * list )
 
 
 
-
-
-void insert (List *list, Node *node, int i)  // 4
-{
-    Node *temp = list->head;
-    while ((i > 1) && (temp)) {
-        temp= temp->next;
-        i--;
-    }
-    if (temp) {
-        if (list->tail == temp) {
-            list->tail = node;
-        }
-        if (list->head == temp) {
-            list->head = node;
-        }
-        node->prev = temp->prev;
-        node->next = temp;
-        if (temp->prev != nullptr) {
-            temp->prev->next = node;
-        }
-        temp->prev = node;
-    } else {
-        add(list, node->x, node->y);
-    }
-}
-
-void  delete_from_list(List *list, int i)  // 5
-{
-    Node *temp = list->head;
-    while ((i > 1) && (temp)) {
-        temp= temp->next;
-        i--;
-    }
-    if (temp != nullptr) {
-        if (list->tail == temp) {
-            list->tail = temp->prev;
-        }
-        if (list->head == temp) {
-            list->head = temp->next;
-        }
-        if (temp->prev != nullptr) {
-            temp->prev->next = temp->next;
-        }
-        if(temp->next != nullptr) {
-            temp->next->prev = temp->prev;
-        }
-        delete temp;
-    }
-}
-
-
 int main(){
     //Matrix matrix;
     double matrix[3][3];
@@ -130,23 +79,10 @@ int main(){
             cin >> matrix[i][j];
         }
     }
-    int c = 1;
+    map<double, List> pots;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
-            if (matrix[i][j] != -1) { //тут должна быть проверка на null
-                List list = List();
-                double temp = matrix[i][j];
-                for (int k = 0 ; k < 3; k++) {
-                    for (int h = 0; h < 3; h++) {
-                        if (matrix[k][h] == temp){
-                            add(&list, k, h);
-                            matrix[k][h] = -1;
-                        }
-                    }
-                }
-                cout << "Potential № " << c << ":" << endl;
-                printList(&list);
-                c++;
+            add(&pots[matrix[i][j]], i, j);
             }
         }
     }
