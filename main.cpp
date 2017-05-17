@@ -2,6 +2,7 @@
 // Created by Алина Бадамшина on 17.05.17.
 //
 #include <iostream>
+#include <map>
 using namespace std;
 
 struct Node       //Структура являющаяся звеном списка
@@ -130,7 +131,7 @@ int main(){
             cin >> matrix[i][j];
         }
     }
-    int c = 1;
+    map<double, List> pots;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             if (matrix[i][j] != -1) { //тут должна быть проверка на null
@@ -144,9 +145,8 @@ int main(){
                         }
                     }
                 }
-                cout << "Potential № " << c << ":" << endl;
-                printList(&list);
-                c++;
+                pots[temp]=list;
+                };
             }
         }
     }
