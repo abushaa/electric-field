@@ -12,7 +12,7 @@ private:
     int n, m;
     double **A;
 public:
-    Matrix (int N, int M, bool E = 0) //E-0 нулевая, E-1 единичная
+    Matrix (int N, int M) //E-0 нулевая, E-1 единичная
     {
         n = N;
         m = M;
@@ -39,5 +39,15 @@ public:
 
     void setItem(int x, int y, double value){
         A[x][y] =  value;
+    }
+    void Display(){
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<m; j++)
+            {
+                std::cout << A[i][j];
+            }
+            std::cout << std::endl;
+        }
     }
 };
