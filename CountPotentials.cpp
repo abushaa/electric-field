@@ -37,17 +37,21 @@ public:
    void setItem(int x, int y, double value){
        A[x][y] = value;
    }
+   
+   void addValueToItem(int x, int y, double value){
+        A[x][y] += value;
+   }
 
    void Display(){
-            for(int i=0; i<n; i++)
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<m; j++)
             {
-                for(int j=0; j<m; j++)
-                {
-                    std::cout << A[i][j];
-                }
-                std::cout << std::endl;
+                std::cout << A[i][j];
             }
-   }
+            std::cout << std::endl;
+        }
+}
 };
 
 int main() {
@@ -56,10 +60,10 @@ int main() {
 
     Matrix Potensials(5, 5);
     Matrix Ex(5, 5);
-    std::cout << Ex.get_N();
-    std::cout << Ex.get_M();
-    std::cout << Ex.getItem(0, 0);
-    Ex.Display();
+    //std::cout << Ex.get_N();
+    //std::cout << Ex.get_M();
+    //std::cout << Ex.getItem(0, 0);
+    //Ex.Display();
     Matrix Ey(5, 5);
     while(getline(file, s)){
         const char *line = s.c_str();
@@ -69,11 +73,13 @@ int main() {
             int y = atoi(&line[6]);
             for(int i=0; i<5; i++){
                 for(int j=0; j<5; j++){
+                    
                     Ex.setItem(i, j, 3.0);
                     Ey.setItem(i, j, 3.0);
-                    Potensials.setItem(i, j, 3.0);
+                    Potentials.setItem(i, j, 3.0);
                 }
             }
+            //Ex.Display();
         }
         if(line[0] == '2'){ //диполь
             int dx = atoi(&line[2]); //компонента х от дипольного момента
@@ -84,4 +90,3 @@ int main() {
     }
     return 0;
 }
-
