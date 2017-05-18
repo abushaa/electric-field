@@ -68,7 +68,7 @@ int main() {
             int x = atoi(&line[4]);
             int y = atoi(&line[6]);
             for(int i=0; i<5; i++){
-                for(int j=0; j<5; i++){
+                for(int j=0; j<5; j++){
                     Ex.setItem(i, j, 3.0);
                     Ey.setItem(i, j, 3.0);
                     Potensials.setItem(i, j, 3.0);
