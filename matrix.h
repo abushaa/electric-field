@@ -6,6 +6,8 @@
 #define ELECTRIC_FIELD_MATRIX_H
 
 #endif //ELECTRIC_FIELD_MATRIX_H
+using namespace std;
+
 class Matrix
 {
 private:
@@ -21,7 +23,7 @@ public:
         {
             A[i] = new double[m];
             for (int j = 0; j < m; ++ j)
-                A[i][j] = (i == j) * E;
+                A[i][j] = 0.0;
         }
     }
 
@@ -40,14 +42,17 @@ public:
     void setItem(int x, int y, double value){
         A[x][y] =  value;
     }
+    void addValueToItem(int x, int y, double value){
+        A[x][y] += value;
+    }
     void Display(){
         for(int i=0; i<n; i++)
         {
             for(int j=0; j<m; j++)
             {
-                std::cout << A[i][j];
+                cout << A[i][j];
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     }
 };
