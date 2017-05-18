@@ -7,6 +7,7 @@
 
 #endif //ELECTRIC_FIELD_LIST_H
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -71,5 +72,17 @@ void printList( List * list )
         cout << "(" << temp->x << ";" << temp->y << ")" << " "; //Выводим значение на экран
         cout << "\n";
         temp = temp->next;     //Смена адреса на адрес следующего элемента
+    }
+}
+
+void outputList( List * list, ofstream &ofs)
+{
+    Node * temp = list->head;  // Временно указываем на адрес первого элемента
+    while( temp != nullptr )      // Пока не встретим пустое значение
+    {
+
+        ofs<< temp->x <<" "<< temp->y;
+        ofs<<"\n";
+        temp = temp->next;
     }
 }
