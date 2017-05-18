@@ -85,17 +85,9 @@ int main(){
             add(&pots[matrix[i][j]], i, j);
             }
         }
+    for(map<double, List>::iterator it = pots.begin(); it!=pots.end(); it++){
+        cout << (*it).first << ":" << endl;
+        printList(&(*it).second);
     }
-
-    /*double temp=getItem(matrix,n,m);
-    for (int i; i <= getNumberofStrings(matrix); i++){
-        for (int j; j<= getNumberofColumns(matrix); j++){
-            if (getItem(matrix,i,j)==temp){
-                add(&list, i, j);
-                getItem(matrix,i,j)= nullptr;
-            }
-        }
-
-    }*/
 }
 
