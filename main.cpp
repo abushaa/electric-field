@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <map>
+#include "matrix.h"
 using namespace std;
 
 struct Node       //Структура являющаяся звеном списка
@@ -69,20 +70,13 @@ void printList( List * list )
     }
 }
 
-
+Matrix potentials(6, 6, 1);
 
 int main(){
-    //Matrix matrix;
-    double matrix[3][3];
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cin >> matrix[i][j];
-        }
-    }
     map<double, List> pots;
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            add(&pots[matrix[i][j]], i, j);
+    for (int i = 0; i < potentials.get_N(); i++){
+        for (int j = 0; j < potentials.get_M(); j++){
+            add(&pots[potentials.getItem(i, j)], i, j);
             }
         }
     for(map<double, List>::iterator it = pots.begin(); it!=pots.end(); it++){

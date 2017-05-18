@@ -5,10 +5,10 @@
 class Matrix
 {
 private:
-    int N, M;
+    int n, m;
     double **A;
 public:
-    matrix (int N, int M, bool E = 0) //E-0 нулевая матрца, E-1 единичная матрица
+    Matrix (int N, int M, bool E = 0) //E-0 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, E-1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
    {
       n = N;
       m = M;
@@ -22,11 +22,11 @@ public:
    }
 
    int get_N(){
-       return N;
+       return n;
    }
 
    int get_M(){
-       return M;
+       return m;
    }
 
    double getItem(int x, int y){
