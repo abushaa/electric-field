@@ -71,7 +71,6 @@ int main(){
         }}
     double border_1 = (max_potential - min_potential)/3;
     double border_2 = 2*(max_potential - min_potential)/3;
-    cout<< border_1 << border_2;
     for (int i = 0; i < Potentials.get_N(); i++){
         for (int j = 0; j < Potentials.get_M(); j++){
             if (Potentials.getItem(i,j)< border_1){
