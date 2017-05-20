@@ -1,6 +1,7 @@
 //
-// Created by Алина Бадамшина on 17.05.17.
+// Created by Алина Бадамшина on 17.05.17
 //
+#include <cstdlib>
 #include <iostream>
 #include <map>
 #include "matrix.h"
@@ -10,8 +11,16 @@
 
 using namespace std;
 
+double truncated(double to_be_cut, int digits){
+
+    static const double powerOfTen[] = { 1.0, 10.0, 100.0, 1000.0,10000.0,100000.0};
+    double truncated = std::trunc(to_be_cut * powerOfTen[digits]) / powerOfTen[digits];
+    return truncated;
+}
+
 int main(){
-    ifstream file("/Users/abushaa/ClionProjects/electric-field/q.txt");
+    ifstream file("/home/brattelnik/Documents/CompScience/electric-field/q.txt");
+    // /Users/abushaa/ClionProjects/electric-field/q.txt
     string s;
     int N;
     cin>>N;
@@ -21,7 +30,7 @@ int main(){
     while(getline(file, s)){
         const char *line = s.c_str();
         if(line[0] == '1'){ //монополь
-            int q = atoi(&line[2]); //зар€д
+            int q = atoi(&line[2]); //заряд
             int x = atoi(&line[4]);
             int y = atoi(&line[6]);
             for(int i=0; i<N; i++){
@@ -30,6 +39,7 @@ int main(){
                     double Exij = q*(i-x+1)/pow(distance, 3);
                     double Eyij = q*(j-y+1)/pow(distance, 3);
                     double Pij = q/distance;
+                    Pij = truncated(Pij,1); //оставляем только три знака после запятой
                     Ex.addValueToItem(i, j, Exij);
                     Ey.addValueToItem(i, j, Eyij);
                     Potentials.addValueToItem(i, j, Pij);
@@ -50,11 +60,13 @@ int main(){
             add(&pots[Potentials.getItem(i, j)], i, j);
             }
         }
-    ofstream pot("/Users/abushaa/ClionProjects/electric-field/potentials.txt");
+    ofstream pot("/home/brattelnik/Documents/CompScience/electric-field/potentials.txt");
+    // /Users/abushaa/ClionProjects/electric-field/potentials.txt
     for(map<double, List>::iterator it = pots.begin(); it!=pots.end(); it++){
         pot << (*it).first << ":";
         pot << "\n";
         outputList(&(*it).second, pot);
     }
-}
 
+
+}
