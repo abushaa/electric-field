@@ -39,7 +39,7 @@ int main(){
                     double Exij = q*(i-x+1)/pow(distance, 3);
                     double Eyij = q*(j-y+1)/pow(distance, 3);
                     double Pij = q/distance;
-                    Pij = truncated(Pij,3); //оставляем только три знака после запятой
+                    Pij = truncated(Pij,2); //оставляем только три знака после запятой
                     Ex.addValueToItem(i, j, Exij);
                     Ey.addValueToItem(i, j, Eyij);
                     Potentials.addValueToItem(i, j, Pij);
