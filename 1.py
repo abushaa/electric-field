@@ -23,5 +23,6 @@ while i != len(input_potentials):
                 line = input_potentials[i].rstrip()
         potentials.append((potential_x,potential_y))
 for i in range(len(potentials)):
-    plt.plot(potentials[i][0], potentials[i][1], 'o')
-plt.savefig('plot_2.pdf', format='pdf')
+    plt.plot(potentials[i][0], potentials[i][1]) #, '0'
+plt.show()
+#plt.savefig('plot_2.pdf', format='pdf')

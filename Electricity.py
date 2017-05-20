@@ -46,18 +46,14 @@ while i != len(input_potentials):
 
 quantities = BubbleSort(quantities) #сортируем значения потенциалов по значениям
 quantities_to_be_cut = []
-quantities_to_be_cut = list_cut(quantities, 1/6) # выделяем те потенциалы, которые не будем визуализировать
+quantities_to_be_cut = list_cut(quantities, 1/3) # выделяем те потенциалы, которые не будем визуализировать
 
-##print(quantities)
-##print(quantities_to_be_cut)
-#print(potentials)
 # Теперь развесим флаги в тех кортежах, в которых присутствует нежелаемый к визуализации потенциал
 for i in range(len(potentials)):
      if potentials[i][2] in quantities_to_be_cut:
          potentials[i][3] = False
-     print(potentials[i][2])
 for i in range(len(potentials)):
-    if (potentials[i][3] == True) or ( potentials[i][2] == 'inf') or ( i%5 == 0 ):
+    if (potentials[i][3] == True) or ( potentials[i][2] == 'inf'):# or (i % 4 == 0):
         plt.plot(potentials[i][0], potentials[i][1],'o')
-plt.show()
-#plt.savefig('plot_2.pdf', format='pdf')
+#plt.show()
+plt.savefig('equipotential_curves.pdf', format='pdf')

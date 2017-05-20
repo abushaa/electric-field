@@ -8,7 +8,6 @@
 #include "list.h"
 #include <fstream>
 #include <cmath>
-
 using namespace std;
 
 double truncated(double to_be_cut, int digits){
@@ -39,7 +38,7 @@ int main(){
                     double Exij = q*(i-x+1)/pow(distance, 3);
                     double Eyij = q*(j-y+1)/pow(distance, 3);
                     double Pij = q/distance;
-                    Pij = truncated(Pij,2); //оставляем только три знака после запятой
+                    //Pij = truncated(Pij,2); //оставляем только три знака после запятой
                     Ex.addValueToItem(i, j, Exij);
                     Ey.addValueToItem(i, j, Eyij);
                     Potentials.addValueToItem(i, j, Pij);
@@ -54,9 +53,43 @@ int main(){
         }
     }
 
-    map<double, List> pots;
+    //Найдем максимум и минимум. Разобьем наши потенциалы на три группы в зависимости от величины, далее
+    // для маленьких потенциалов сделаем высокую точность, для высоких -низкую
+    // Это делается для улучшения отображения картинки
+    double min_potential = Potentials.getItem(0,0);
+    double max_potential = Potentials.getItem(0,0);
     for (int i = 0; i < Potentials.get_N(); i++){
         for (int j = 0; j < Potentials.get_M(); j++){
+            if (Potentials.getItem(i,j)< min_potential){
+                min_potential = Potentials.getItem(i,j);
+
+            }
+            if (Potentials.getItem(i,j)> max_potential and Potentials.getItem(i,j)< 10000000000000) { //немножко стыдно
+                max_potential = Potentials.getItem(i, j);
+
+            }
+        }}
+    double border_1 = (max_potential - min_potential)/3;
+    double border_2 = 2*(max_potential - min_potential)/3;
+    cout<< border_1 << border_2;
+    for (int i = 0; i < Potentials.get_N(); i++){
+        for (int j = 0; j < Potentials.get_M(); j++){
+            if (Potentials.getItem(i,j)< border_1){
+                Potentials.setItem(i,j,truncated(Potentials.getItem(i,j),2)); //оставляем только три знака после запятой
+            }
+            if (Potentials.getItem(i,j)> border_1 and Potentials.getItem(i,j) < border_2){
+                Potentials.setItem(i,j,truncated(Potentials.getItem(i,j),1)); //оставляем только два знака после запятой
+            }
+            if (Potentials.getItem(i,j) > border_2){
+                Potentials.setItem(i,j,truncated(Potentials.getItem(i,j),0)); //оставляем только один знак после запятой
+            }
+        }}
+
+
+
+    map<double, List> pots;
+    for (int i = 0; i < Potentials.get_N(); i++){
+                for (int j = 0; j < Potentials.get_M(); j++){
             add(&pots[Potentials.getItem(i, j)], i, j);
             }
         }
