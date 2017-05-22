@@ -17,6 +17,10 @@ double truncated(double to_be_cut, int digits){
     return truncated;
 }
 
+double scalar_multiplication(double a1, double b1, double a2, double b2){
+    return a1*a2+b1*b2;
+}
+
 int main(){
     ifstream file("/home/brattelnik/Documents/CompScience/electric-field/q.txt");
     // /Users/abushaa/ClionProjects/electric-field/q.txt
@@ -45,12 +49,28 @@ int main(){
                 }
             }
         }
-        if(line[0] == '2'){ //диполь
+   /*     if(line[0] == '2'){ //диполь
             int dx = atoi(&line[2]); //компонента х от дипольного момента
             int dy = atoi(&line[4]);
             int x = atoi(&line[6]);
             int y = atoi(&line[8]);
+            for(int i=0; i<N; i++){
+                for(int j=0; j<N; j++){
+                    double dipole_abs = pow(scalar_multiplication(dx, dy, dx, dy), 0,5);
+                    double angle = scalar_multiplication(dx, dy, i-x+1, j-y+1)/dipole_abs/pow(scalar_multiplication(i-x+1, j-y+1, i-x+1, j-y+1), 0,5)
+                    double distance = pow(pow(i-x+1, 2)+pow(j-y+1, 2), 0.5);
+                    double Exij = 1/pow(distance, 3)*((i-x+1)*dx+(j-y+1)*dy*3*(i-x+1)-dx));
+                    double Eyij = 1/pow(distance, 3)*((i-x+1)*dx+(j-y+1)*dy*3*(j-y+1)-dy));
+                    double Pij = dipole_abs*cos(angle)/distance/distance;
+                    //Pij = truncated(Pij,2); //оставляем только три знака после запятой
+                    Ex.addValueToItem(i, j, Exij);
+                    Ey.addValueToItem(i, j, Eyij);
+                    Potentials.addValueToItem(i, j, Pij);
+                }
+            }
         }
+    */
+
     }
 
     //Найдем максимум и минимум. Разобьем наши потенциалы на три группы в зависимости от величины, далее
